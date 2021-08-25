@@ -10,8 +10,38 @@ static        void          DisplayGreeting()
 */
 
 using System;
-namespace EmployeeDatabase
+using System.Collections.Generic;
+
+namespace Methods
 {
+  // class keyword, name of class (PascalCase)
+  class Employee
+  {
+    // public means "this can be seen outside of the class" public/private most used
+    // type (cannot use var because we need to declare what it is)
+    // name of property (label)
+    public string Name;
+    public int Department;
+    public int Salary;
+    public int MonthlySalary;
+
+    // This is a *special* method known as a "constructor"
+    // The constructor is called when we write a line like: `var bob = new Employee(`
+    //                                                       bob = object of type list
+
+    // The arguments to the method should line up to those below
+
+    public Employee(string newName, int newDepartment, int newSalary, int newMonthlySalary)
+    {
+      // In the constructor we should setup the values for any of the properties.
+      // Here we will *copy* the values give by the arguments to the corresponding property. 
+
+      Name = newName;
+      Department = newDepartment;
+      Salary = newSalary;
+      MonthlySalary = newMonthlySalary;
+    }
+  }
   class Program
   {
     static void DisplayGreeting()
@@ -59,6 +89,19 @@ namespace EmployeeDatabase
 
     static void Main(string[] args)
     {
+      // graceHopper is an object instance of class Employee
+      var graceHopper = new Employee("Grace Hopper", 100, 240_000, 24_000);
+      Console.WriteLine(graceHopper.Department);
+
+      var elonMusk = new Employee("Elon Musk", 42, 120_000, 10_000);
+      Console.WriteLine(elonMusk.Department);
+
+      var employees = new List<Employee>();
+      employees.Add(graceHopper);
+      employees.Add(elonMusk);
+
+      employees.RemoveAt(0);
+
       DisplayGreeting();
 
       var name = PromptForString("What is your name? ");
